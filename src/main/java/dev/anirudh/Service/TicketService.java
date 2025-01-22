@@ -54,6 +54,9 @@ public class TicketService {
         ticket.setGate(gate);
         ticket.setParkingSpot(parkingSpot);
         ticket.setVehicle(vehicle);
+        ticket.setCreatedAt(new Date());
+        ticket.setLastModifiedAt(ticket.getCreatedAt());
+
         ticket = ticketRepository.save(ticket);
 
         return ticket;

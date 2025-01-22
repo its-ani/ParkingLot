@@ -2,6 +2,7 @@ package dev.anirudh.Repository;
 
 import dev.anirudh.Models.Ticket;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ public class TicketRepository {
 
     public Ticket save(Ticket ticket) {
         ticketId += 1;
+        ticket.setId(ticketId);
         ticketMap.put(ticketId, ticket);
 
         return ticket;

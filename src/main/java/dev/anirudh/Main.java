@@ -17,12 +17,12 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Hello world!");
 
         GenerateTicketRequestDto generateTicketRequestDto = new GenerateTicketRequestDto();
         Gate gate = new Gate();
         Vehicle vehicle = new Vehicle();
         Operator operator = new Operator();
+        Ticket ticket = new Ticket();
         GateRepository gateRepository = new GateRepository();
         TicketRepository ticketRepository = new TicketRepository();
         VehicleRepository vehicleRepository = new VehicleRepository();
@@ -64,6 +64,15 @@ public class Main {
         vehicleRepository.save(vehicle);
 
 
+//        TIcket
+//        private Date entryTime;
+//        private Vehicle vehicle;
+//        private ParkingSpot parkingSpot;
+//        private Gate gate;
+
+
+
+
 
 //        GenerateTicket
         generateTicketRequestDto.setGateId(1L);
@@ -75,6 +84,7 @@ public class Main {
 
         GenerateTicketResponseDto generateTicketResponseDto = ticketController.generateTicket(generateTicketRequestDto);
         try {
+            System.out.println("Your Ticket is created ");
             String json = "{\"ticket\":{\"id\":null,\"createdAt\":null,\"lastModifiedAt\":null,\"entryTime\":1737572467590,\"vehicle\":{\"id\":1,\"createdAt\":null,\"lastModifiedAt\":null,\"ownerName\":\"Anirudh\",\"vehicleType\":\"TWO_WHEELER\",\"vehicleNumber\":\"DL 8S BP 5650\"},\"parkingSpot\":{\"id\":null,\"createdAt\":null,\"lastModifiedAt\":null,\"spotNumber\":null,\"vehicleType\":null,\"parkingSpotStatus\":null,\"vehicle\":null},\"gate\":{\"id\":1,\"createdAt\":1737572467588,\"lastModifiedAt\":1737572467588,\"operator\":{\"id\":1,\"createdAt\":1737572467588,\"lastModifiedAt\":1737572467588,\"name\":\"Vivek\"},\"gateNumber\":\"1\",\"gateType\":\"ENTRY\"}},\"responseStatus\":\"SUCCESS\"}";
             ObjectMapper objectMapper = new ObjectMapper();
             Object jsonObject = objectMapper.readValue(json, Object.class);
@@ -83,9 +93,10 @@ public class Main {
             System.out.println(prettyJson);
         }
         catch (JsonProcessingException e) {
+            System.out.println("We are facing some issues. Your Ticket is not created ");
             e.printStackTrace();
         }
 
-        System.out.println("Your Ticket is created " + generateTicketResponseDto);
+
     }
 }

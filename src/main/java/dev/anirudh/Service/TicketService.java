@@ -15,11 +15,12 @@ public class TicketService {
     private VehicleRepository vehicleRepository;
     private TicketRepository ticketRepository;
 
-    TicketService(GateRepository gateRepository, VehicleRepository vehicleRepository, TicketRepository ticketRepository) {
+    public TicketService(GateRepository gateRepository, VehicleRepository vehicleRepository, TicketRepository ticketRepository) {
         this.gateRepository = gateRepository;
         this.vehicleRepository = vehicleRepository;
         this.ticketRepository = ticketRepository;
     }
+
 
     public Ticket genereateTicket(String vehicleNumber, String ownerName, Long gateId, VehicleType vehicleType, ParkingSpotAssignmentStrategyType strategyType){
 

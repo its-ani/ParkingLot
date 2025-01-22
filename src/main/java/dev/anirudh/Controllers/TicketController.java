@@ -14,6 +14,7 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
+
     public GenerateTicketResponseDto generateTicket(GenerateTicketRequestDto generateTicketRequestDto){
 
         String vehicleNumber = generateTicketRequestDto.getVehicleNumber();

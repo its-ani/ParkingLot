@@ -1,4 +1,7 @@
 package dev.anirudh.Models;
 
-public class PaymentsMode {
+public enum  PaymentsMode {
+    CASH,
+    ONLINE,
+    CARD
 }

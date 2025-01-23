@@ -56,7 +56,7 @@ public class Main {
 //        private String ownerName;
 //        private VehicleType vehicleType;
         vehicle.setId(1L);
-        vehicle.setVehicleNumber("DL 8S BP 5650");
+        vehicle.setVehicleNumber("DL 8S B");
         vehicle.setCreatedAt(new Date());
         vehicle.setLastModifiedAt(vehicle.getCreatedAt());
         vehicle.setOwnerName("Anirudh");
@@ -64,7 +64,7 @@ public class Main {
         vehicleRepository.save(vehicle);
 
 
-//        TIcket
+//        Ticket
 //        private Date entryTime;
 //        private Vehicle vehicle;
 //        private ParkingSpot parkingSpot;
@@ -72,13 +72,11 @@ public class Main {
 
 
 
-
-
 //        GenerateTicket
         generateTicketRequestDto.setGateId(1L);
         generateTicketRequestDto.setOwnerName("Anirudh");
         generateTicketRequestDto.setParkingSpotassignmentStrategyType(ParkingSpotAssignmentStrategyType.RANDOM);
-        generateTicketRequestDto.setVehicleNumber("DL 8S BP 5650");
+        generateTicketRequestDto.setVehicleNumber("KA 8S BP");
         generateTicketRequestDto.setVehicleType(VehicleType.TWO_WHEELER);
 
 

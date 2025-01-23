@@ -1,4 +1,4 @@
-package dev.anirudh.Strategy;
+package dev.anirudh.Strategy.ParkingSpotStrategy;
 
 import dev.anirudh.Models.ParkingSpot;
 import dev.anirudh.Models.Vehicle;

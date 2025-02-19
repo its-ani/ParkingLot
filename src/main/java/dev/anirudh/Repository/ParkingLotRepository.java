@@ -12,32 +12,27 @@ public class ParkingLotRepository {
     private final Map<Long, ParkingLot> parkingLotStorage = new HashMap<>();
     private final Map<Long, Long> gateToParkingLotMap = new HashMap<>();
 
-    @Override
     public int getCapacityForVehicleType(VehicleType type, ParkingFloor floor) {
         return (int) floor.getParkingSpots().stream()
                 .filter(spot -> spot.getVehicleType().equals(type))
                 .count();
     }
 
-    @Override
     public Optional<ParkingLot> getParkingLotByGateId(long gateId) {
         Long parkingLotId = gateToParkingLotMap.get(gateId);
         return parkingLotId != null ? Optional.ofNullable(parkingLotStorage.get(parkingLotId)) : Optional.empty();
     }
 
-    @Override
     public Optional<ParkingLot> getParkingLotById(long id) {
         return Optional.ofNullable(parkingLotStorage.get(id));
     }
 
-    @Override
     public ParkingLot save(ParkingLot parkingLot) {
         parkingLotStorage.put(parkingLot.getId(), parkingLot);
         parkingLot.getGates().forEach(gate -> gateToParkingLotMap.put(gate.getId(), parkingLot.getId()));
         return parkingLot;
     }
 
-    @Override
     public List<ParkingFloor> getParkingFloors(ParkingLot parkingLot) {
         return parkingLot.getParkingFloorList();
     }

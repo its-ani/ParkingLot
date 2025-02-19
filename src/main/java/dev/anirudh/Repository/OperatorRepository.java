@@ -1,10 +1,11 @@
 package dev.anirudh.Repository;
 
+import dev.anirudh.Models.Operator;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Operator {
+public class OperatorRepository {
     private Map<Long, Operator> operators = new HashMap<>();
     private Long operatorId = 0L;
 

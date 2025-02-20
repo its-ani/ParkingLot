@@ -12,10 +12,7 @@ import dev.anirudh.Repository.VehicleRepository;
 import dev.anirudh.Service.TicketService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,36 +54,7 @@ public class Main {
         gate.setLastModifiedAt(gate.getCreatedAt());
         gateRepository.save(gate);
 
-//        private String spotNumber;
-//        private List<VehicleType> vehicleType;
-//        private ParkingSpotStatus parkingSpotStatus;
-//        private Vehicle vehicle;
-//      Parking SPot
-        parkingSpot.setSpotNumber("100");
-        parkingSpot.setVehicleType(new ArrayList<>(VehicleType.TWO_WHEELER, VehicleType.THREE_WHEELER, VehicleType.SEDAN));
-
-
-//private String floorNumber;
-//    private List<ParkingSpot> parkingSpots;
-//      ParkingFloor
-        parkingFloor.setFloorNumber("3");
-        parkingFloor.setParkingSpots(new ArrayList<>(""));
-
-//        ParkingLot
-        List<ParkingFloor> parkingFloorList;
-        Optional<Gate> optionalGate = gateRepository.findById(1L);
-        List<Gate> gates;
-        if (optionalGate.isPresent()) gates = optionalGate.get();
-        else gates = new ArrayList<>();
-        parkingLot.setGates(gates);
-        parkingLot.setName("ParkingLot1");
-        parkingLot.setParkingLotStatus(ParkingLotStatus.OPERATIONAL);
-        parkingLot.setParkingFloorList();
-
 //        Vehicle
-//        private String VehicleNumber;
-//        private String ownerName;
-//        private VehicleType vehicleType;
         vehicle.setId(1L);
         vehicle.setVehicleNumber("DL 8S B");
         vehicle.setCreatedAt(new Date());
@@ -95,6 +63,34 @@ public class Main {
         vehicle.setVehicleType(VehicleType.TWO_WHEELER);
         vehicleRepository.save(vehicle);
 
+//      Parking SPot
+        parkingSpot.setSpotNumber("100");
+        parkingSpot.setVehicleType(new ArrayList<>(Arrays.asList(VehicleType.TWO_WHEELER, VehicleType.THREE_WHEELER, VehicleType.SEDAN)));
+        parkingSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
+        parkingSpot.setVehicle(vehicle);
+
+//private String floorNumber;
+//    private List<ParkingSpot> parkingSpots;
+//      ParkingFloor
+        parkingFloor.setFloorNumber("3");
+        parkingFloor.setParkingSpots(new ArrayList<>(Arrays.asList(parkingSpot)));
+
+//        ParkingLot
+        List<ParkingFloor> parkingFloorList;
+        Optional<Gate> optionalGate = gateRepository.findById(1L);
+        List<Gate> gates = new ArrayList<>();
+        if (optionalGate.isPresent()) {
+            gates.add(optionalGate.get());
+        }
+        else {
+            gates = new ArrayList<>();
+        }
+        parkingLot.setGates(gates);
+        parkingLot.setName("ParkingLot1");
+        parkingLot.setParkingLotStatus(ParkingLotStatus.OPERATIONAL);
+        parkingLot.setParkingFloorList(new ArrayList<>(Arrays.asList(parkingFloor)));
+
+//
 
 
 //        Ticket

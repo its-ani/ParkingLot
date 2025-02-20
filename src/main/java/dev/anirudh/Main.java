@@ -12,7 +12,10 @@ import dev.anirudh.Repository.VehicleRepository;
 import dev.anirudh.Service.TicketService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +26,9 @@ public class Main {
         Vehicle vehicle = new Vehicle();
         Operator operator = new Operator();
         Ticket ticket = new Ticket();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingSpot parkingSpot = new ParkingSpot();
+        ParkingFloor parkingFloor = new ParkingFloor();
         GateRepository gateRepository = new GateRepository();
         TicketRepository ticketRepository = new TicketRepository();
         VehicleRepository vehicleRepository = new VehicleRepository();
@@ -51,6 +57,32 @@ public class Main {
         gate.setLastModifiedAt(gate.getCreatedAt());
         gateRepository.save(gate);
 
+//        private String spotNumber;
+//        private List<VehicleType> vehicleType;
+//        private ParkingSpotStatus parkingSpotStatus;
+//        private Vehicle vehicle;
+//      Parking SPot
+        parkingSpot.setSpotNumber("100");
+        parkingSpot.setVehicleType(new ArrayList<>(VehicleType.TWO_WHEELER, VehicleType.THREE_WHEELER, VehicleType.SEDAN));
+
+
+//private String floorNumber;
+//    private List<ParkingSpot> parkingSpots;
+//      ParkingFloor
+        parkingFloor.setFloorNumber("3");
+        parkingFloor.setParkingSpots(new ArrayList<>(""));
+
+//        ParkingLot
+        List<ParkingFloor> parkingFloorList;
+        Optional<Gate> optionalGate = gateRepository.findById(1L);
+        List<Gate> gates;
+        if (optionalGate.isPresent()) gates = optionalGate.get();
+        else gates = new ArrayList<>();
+        parkingLot.setGates(gates);
+        parkingLot.setName("ParkingLot1");
+        parkingLot.setParkingLotStatus(ParkingLotStatus.OPERATIONAL);
+        parkingLot.setParkingFloorList();
+
 //        Vehicle
 //        private String VehicleNumber;
 //        private String ownerName;
@@ -62,6 +94,7 @@ public class Main {
         vehicle.setOwnerName("Anirudh");
         vehicle.setVehicleType(VehicleType.TWO_WHEELER);
         vehicleRepository.save(vehicle);
+
 
 
 //        Ticket
